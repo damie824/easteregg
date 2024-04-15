@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        overflow: hidden;
+      }
+      .body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+      }
+      .body p {
+        margin: 0;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body">
+      <img id="cat" style="width: 200px; height: auto" />
+      <h1>나가주세요</h1>
+      <p>귀여운 고양이 보고 가세요</p>
+    </div>
+    <script>
+      const catImg = document.getElementById("cat");
+
+      const cat = fetch("https://api.thecatapi.com/v1/images/search?limit=10")
+        .then((r) => {
+          return r.json();
+        })
+        .then((r) => {
+          catImg.setAttribute("src", r[0].url);
+        });
+    </script>
+  </body>
+</html>
